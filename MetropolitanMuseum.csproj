@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\img\1.jpg" />
+    <None Include="wwwroot\img\10.jpg" />
+    <None Include="wwwroot\img\11.jpg" />
+    <None Include="wwwroot\img\12.jpg" />
+    <None Include="wwwroot\img\13.jpg" />
+    <None Include="wwwroot\img\14.jpg" />
+    <None Include="wwwroot\img\15.jpg" />
+    <None Include="wwwroot\img\16.jpg" />
+    <None Include="wwwroot\img\17.jpg" />
+    <None Include="wwwroot\img\18.jpg" />
+    <None Include="wwwroot\img\19.jpg" />
+    <None Include="wwwroot\img\21.jpg" />
+    <None Include="wwwroot\img\3.jpg" />
+    <None Include="wwwroot\img\4.jpg" />
+    <None Include="wwwroot\img\5.jpg" />
+    <None Include="wwwroot\img\6.jpg" />
+    <None Include="wwwroot\img\7.jpg" />
+    <None Include="wwwroot\img\8.jpg" />
+    <None Include="wwwroot\img\9.jpg" />
+    <None Include="wwwroot\img\home.jpg" />
+    <None Include="wwwroot\img\Oceanic_Marquee.jpg" />
+    <None Include="wwwroot\img\The-American-Wing_Marquee.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

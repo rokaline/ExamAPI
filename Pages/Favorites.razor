@@ -1,0 +1,48 @@
+﻿
+<!-- Favotites.razor-->
+@page "/favorites"
+
+@using System.Text.Json
+@using System.Net.Http
+@inject HttpClient client
+@using MetropolitanMuseum.Convertisseur <!-- Convertisseur.cs -->
+
+
+<div class="category">
+    <!-- Rappel: utilisation du singleton pour la gestion des favorits -->
+        <p class="category-title">Déjà vu</p>
+        <ul>
+            <li class="dejaVu"></li>
+           
+        </ul>
+         <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="" required minlength="10" maxlength="300"></textarea><button class="supprimerButton">Supprimer</button>
+            
+    </div>
+
+
+    <div class="category">
+        <p class="category-title">Visite à venir</p>
+        <ul>
+            <li class="aVenir"></li>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="2" required minlength="10" maxlength="300"></textarea>
+            <br>
+        </ul>
+    </div>
+
+
+    <div class="category">
+        <p class="category-title">Visite à prévoir</p>
+        <ul>
+            <li class="visiteAprevoir"></li>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="2" required minlength="10" maxlength="300"></textarea>
+            <br>
+        </ul>
+    </div>
+
+
+@code {
+
+}

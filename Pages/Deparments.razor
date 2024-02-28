@@ -1,0 +1,71 @@
+﻿<!--Departments.razor-->
+@page "/departments"
+
+@using System.Text.Json
+@using System.Net.Http
+@inject HttpClient client
+@using MetropolitanMuseum.Convertisseur <!-- Convertisseur.cs -->
+@inject IJSRuntime JSRuntime
+
+
+<script src="../js/photoDept.js"></script>
+
+<!-- Affichage des données de l'API -->
+@if (apiResponse != null && apiResponse.Departments != null)
+{
+    <h3>Départments</h3>
+    <ul>
+        @foreach (var department in apiResponse.Departments)
+        {
+            <div>
+                
+                <li>@($"{department.DisplayName} ")</li>
+         
+                <img src="img/@($"{department.DepartmentId}.jpg")" alt="Image pour le DepartmentId {department.DepartmentId} ">
+
+
+                <select id="etat" class="favoriteButton">
+                    <option value="1">Vu</option>
+                    <option value="2">Prévu</option>
+                    <option value="3">À prévoir</option>
+                </select> // rappel de l'évenement'
+            
+            </div>
+        }
+    </ul>
+}
+else
+{
+    <p>Chargement des données...</p>
+}
+
+@code {
+
+    // Déclaration d'une variable pour stocker la réponse de l'API
+    private DepartmentContainer apiResponse;
+
+    // Méthode appelée lors de l'initialisation de la page
+    protected override async Task OnInitializedAsync()
+    {
+        // Appel de la méthode GetData pour récupérer les données de l'API
+        await GetData();
+    }
+
+    // A)Méthode pour récupérer les données de l'API
+    public async Task GetData()
+    {
+        try
+        {
+            // Appel asynchrone à l'API pour obtenir une chaîne JSON représentant les données
+            var responseString = await client.GetStringAsync("https://collectionapi.metmuseum.org/public/collection/v1/departments");
+
+            // Désérialisation de la chaîne JSON en un objet ApiResponse
+            apiResponse = JsonSerializer.Deserialize<DepartmentContainer>(responseString);
+        }
+        catch (Exception ex)
+        {
+            // Gestion des erreurs lors de la récupération des données
+            Console.WriteLine($"Une erreur est survenue lors de la récupération des données : {ex.Message}");
+        }
+    }
+}
