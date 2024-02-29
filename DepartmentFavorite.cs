@@ -1,4 +1,4 @@
-﻿// DepartmentFavorite.cs
+﻿// classe DepartmentFavorite.cs
 
 using MetropolitanMuseum.Pages;
 using MetropolitanMuseum;
@@ -9,7 +9,10 @@ namespace MetropolitanMuseum
     public class DepartmentFavorite
     {
         public string DepartmentName { get; set; }
+
         public string PhotoUrl{ get; set; }
+
+
         public string Description { get; set; }
         public int Category { get; set; }
     }
