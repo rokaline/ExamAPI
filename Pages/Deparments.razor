@@ -7,7 +7,7 @@
 @using MetropolitanMuseum.Convertisseur <!-- Convertisseur.cs -->
 @inject NavigationManager NavigationManager
 
-@inject IJSRuntime JS
+@inject IJSRuntime JSRuntime
 
 
 <script src="../js/photoDept.js"></script>
@@ -44,7 +44,7 @@ else
 @if (FavoritesManager.Instance.HasFavorites())
 {
     // bouton confirmation choix favoris
-    <button @onclick="ConfirmChoices">Confirmer mon choix</button>
+    <button @onclick="SaveFavorites">Confirmer mon choix</button>
 }
 
 @code {
@@ -57,6 +57,9 @@ else
     {
         // Appel de la méthode GetData pour récupérer les données de l'API
         await GetData();
+
+        //apple la méthode LoadFavorites pour l'affichage des favoris
+        await LoadFavorites();
     }
 
     // A)Méthode pour récupérer les données de l'API
@@ -93,10 +96,39 @@ else
 
 
 
+    private async Task SaveFavorites() //appellée dans le bouton de sauvegrade 
+    {
+        // Récupérer les favoris depuis le gestionnaire de favoris
+        Dictionary<int, List<DepartmentFavorite>> favorites = FavoritesManager.Instance.GetSaveFav();
+
+        // Sérialiser les favoris en JSON
+        var favoritesJson = JsonSerializer.Serialize(favorites);
+
+        // Stockage des favoris dans le stockage local du navigateur
+        await JSRuntime.InvokeVoidAsync("localStorage.setItem", "favorites", favoritesJson);
+
+        // Rediriger vers la page "Favorites"
+        NavigationManager.NavigateTo("/favorites");
+    }
+
+
+    // partie peremttant d'aller rechercher les fav du local storage 
+    private async Task LoadFavorites()
+    {
+        var fav = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "favorites");
+        if (fav != null)
+        {
+            Dictionary<int, List<DepartmentFavorite>> getFav = JsonSerializer.Deserialize<Dictionary<int, List<DepartmentFavorite>>>(fav);
+            FavoritesManager.Instance.SetsaveFav(getFav);
+        }
+    }
 
 
 
 
+
+    
+    /*
     private async Task ConfirmChoices()
     {
         // methode qui enregistre le choix (1 ou 2 ou 3) et renvoie l'affichage  vers Favorites.razor.
@@ -107,5 +139,9 @@ else
         // Rediriger vers la page "Favorites"
         NavigationManager.NavigateTo("/favorites");
     }
+    */
+
+
+
     
 }

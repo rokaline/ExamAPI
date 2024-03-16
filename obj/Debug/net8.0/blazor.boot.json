@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "MetropolitanMuseum",
   "resources": {
-    "hash": "sha256-JZoE1682ahuqUTpCAPTtiyk2Co9pw6zsfEY+smxf3Us=",
+    "hash": "sha256-EbavMsfEUpr8AwZPqXFkomyTyc05c5+FaWxNIT9Ilu4=",
     "jsModuleNative": {
       "dotnet.native.8.0.2.cayx3tlo18.js": "sha256-gPMK16QWoJSTxorlZJqcVtbBRTniIQWlLsJN2O4cJHg="
     },
@@ -208,10 +208,10 @@
       "mscorlib.wasm": "sha256-cDuLeL3OCtVtiid/dyex1MVgbuzDSRwZxKzuP2Dp4mg=",
       "netstandard.wasm": "sha256-A0h86SDieTMoU/wU2JTszWCsUmMuguDcbap0b0BzsmI=",
       "System.Private.CoreLib.wasm": "sha256-/0DNIm/T0C07X7Tuz5uR8JvVCoAfEE2MnfPUSjyS9xc=",
-      "MetropolitanMuseum.wasm": "sha256-X33yJO3Bmmt62yQV2CZ5BxuSuthN+VEHGpFD/ot1LQA="
+      "MetropolitanMuseum.wasm": "sha256-IMBdtTnOwv72417UMFpjHiNT+Rgi1+c5t5BU/zq57dc="
     },
     "pdb": {
-      "MetropolitanMuseum.pdb": "sha256-XXqWZpGq8E/WP9drAGqcHc2AgjqJadXdxdr9aXfc2rA="
+      "MetropolitanMuseum.pdb": "sha256-fimNpZ4NUdPJd3szehRzzgAKO93BCJ1vjJ2BUT1HwGk="
     }
   },
   "cacheBootResources": true,
