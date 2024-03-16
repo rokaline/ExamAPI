@@ -17,8 +17,9 @@
         @favorite.DepartmentName
         <img src="@favorite.PhotoUrl" alt="Image du département @favorite.DepartmentName"><br />
 
-        <input type="text" name="description" id="description" minlength="5" maxlength="300" required><br />
-        <!--<button class="commentButton">Ajout commentaire</button>-->
+
+        <input type="text" @bind="favorite.Description" id="description" minlength="5" maxlength="300" required><br />
+        <button class="commentButton" @onclick="SaveDescription">Ajout commentaire</button>
 
         <button class="deleteButton" @onclick="() => DeleteFavorite(1, favorite)">Supprimer des favoris</button>
     </div>
@@ -34,9 +35,8 @@
         @favorite.DepartmentName
         <img src="@favorite.PhotoUrl" alt="Image du département @favorite.DepartmentName"><br />
 
-        <input type="text" name="description" id="description" minlength="5" maxlength="300" required><br />
-        <!--<button class="commentButton">Ajout commentaire</button>-->
-     
+        <input type="text" @bind="favorite.Description" id="description" minlength="5" maxlength="300" required><br />
+        <button class="commentButton" @onclick="SaveDescription">Ajout commentaire</button>
 
         <button class="deleteButton" @onclick="() => DeleteFavorite(2, favorite)">Supprimer des favoris</button>
     </div>
@@ -51,8 +51,8 @@
         @favorite.DepartmentName
         <img src="@favorite.PhotoUrl" alt="Image du département @favorite.DepartmentName"><br />
 
-        <input type="text" name="description" id="description" minlength="5" maxlength="300" required><br />
-        <!--<button class="commentButton">Ajout commentaire</button>-->
+        <input type="text" @bind="favorite.Description" id="description" minlength="5" maxlength="300" required><br />
+        <button class="commentButton" @onclick="SaveDescription">Ajout commentaire</button>
 
         <button class="deleteButton" @onclick="() => DeleteFavorite(3, favorite)">Supprimer des favoris</button>
     </div>
@@ -62,6 +62,10 @@
 
 @code {
     private Dictionary<int, List<DepartmentFavorite>> favoritesByCategory = new Dictionary<int, List<DepartmentFavorite>>();
+
+    // pour le commentaire
+    private DepartmentFavorite favorite = new DepartmentFavorite();
+
 
     protected override void OnInitialized()
     {
@@ -77,22 +81,14 @@
         
         //apple la méthode LoadFavorites pour l'affichage des favoris
         await LoadFavorites();
+
+        // Charger la description depuis le stockage local lors de l'initialisation
+        await LoadDescriptionFromLocalStorage();
+    
     }
 
     // partie peremttant d'aller rechercher les fav du local storage
-    private async Task LoadFavorites()
-    {
-        var fav = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "favorites");
-        if (fav != null)
-        {
-            Dictionary<int, List<DepartmentFavorite>> getFav = JsonSerializer.Deserialize<Dictionary<int, List<DepartmentFavorite>>>(fav);
-            FavoritesManager.Instance.SetsaveFav(getFav);
-        }
-    }
-
-
-
-
+  
     private async Task DeleteFavorite(int category, DepartmentFavorite favorite)
     {
         if (favoritesByCategory.ContainsKey(category))
@@ -113,6 +109,59 @@
             StateHasChanged();
         }
     }
+
+
+
+    // Méthode appelée à chaque fois que la description change
+    private async Task SaveDescription()
+    {
+        var description = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "favoriteDescription");
+        if (!string.IsNullOrEmpty(description))
+        {
+            favorite.Description = description;
+        }
+
+        // Sauvegarde du commentaire dans le stockage local du navigateur
+        await JSRuntime.InvokeVoidAsync("localStorage.setItem", "favoriteDescription", favorite.Description);
+    }
+
+
+
+    //pour la sauvegarde du commentaire 
+    private async Task LoadDescriptionFromLocalStorage()
+    {
+        var description = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "favoriteDescription");
+        if (!string.IsNullOrEmpty(description))
+        {
+            favorite.Description = description;
+        }
+    }
+
+    
+    // chargement général
+    private async Task LoadFavorites()
+    {
+        var fav = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "favorites");
+        if (fav != null)
+        {
+            Dictionary<int, List<DepartmentFavorite>> getFav = JsonSerializer.Deserialize<Dictionary<int, List<DepartmentFavorite>>>(fav);
+            FavoritesManager.Instance.SetsaveFav(getFav);
+
+            // Mettre à jour les commentaires pour chaque favori
+            foreach (var category in getFav.Keys)
+            {
+                foreach (var favorite in getFav[category])
+                {
+                    var storedFavorite = FavoritesManager.Instance.GetFavorites(category).FirstOrDefault(f => f.DepartmentName == favorite.DepartmentName);
+                    if (storedFavorite != null)
+                    {
+                        storedFavorite.Description = favorite.Description;
+                    }
+                }
+            }
+        }
+    }
+
 
 
     //partie pour la sauvegarde

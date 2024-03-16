@@ -128,20 +128,6 @@ else
 
 
     
-    /*
-    private async Task ConfirmChoices()
-    {
-        // methode qui enregistre le choix (1 ou 2 ou 3) et renvoie l'affichage  vers Favorites.razor.
-        Dictionary<int, List<DepartmentFavorite>> fav = FavoritesManager.Instance.GetSaveFav(); //récupèrtion des fav dans un objet
-        var save = JsonSerializer.Serialize(fav); //serialisation de cet objet en json
-        await JS.InvokeVoidAsync("localStorage.setItem", "myfavs", save); //ajout du json dans le local storage avec la clef myfavs => set pour mettre dans le local storage
-
-        // Rediriger vers la page "Favorites"
-        NavigationManager.NavigateTo("/favorites");
-    }
-    */
-
-
 
     
 }
