@@ -70,12 +70,47 @@
         favoritesByCategory[3] = FavoritesManager.Instance.GetFavorites(3);
     }
 
-    private void DeleteFavorite(int category, DepartmentFavorite favorite)
+
+    // Méthode appelée lors de l'initialisation de la page
+    protected override async Task OnInitializedAsync()
+    {
+        
+        //apple la méthode LoadFavorites pour l'affichage des favoris
+        await LoadFavorites();
+    }
+
+    // partie peremttant d'aller rechercher les fav du local storage
+    private async Task LoadFavorites()
+    {
+        var fav = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "favorites");
+        if (fav != null)
+        {
+            Dictionary<int, List<DepartmentFavorite>> getFav = JsonSerializer.Deserialize<Dictionary<int, List<DepartmentFavorite>>>(fav);
+            FavoritesManager.Instance.SetsaveFav(getFav);
+        }
+    }
+
+
+
+
+    private async Task DeleteFavorite(int category, DepartmentFavorite favorite)
     {
         if (favoritesByCategory.ContainsKey(category))
         {
-            // Supprimez l'élément de la liste des favoris de la catégorie spécifiée
+            // Supprime l'élément de la liste des favoris de la catégorie spécifiée
             favoritesByCategory[category].Remove(favorite);
+
+            // Supprime le favori de l'instance de FavoritesManager
+            FavoritesManager.Instance.GetFavorites(category).Remove(favorite);
+
+            // Sérialiser les favoris mis à jour en JSON
+            var favoritesJson = JsonSerializer.Serialize(FavoritesManager.Instance.GetSaveFav());
+
+            // Stockage des favoris dans le stockage local du navigateur
+            await JSRuntime.InvokeVoidAsync("localStorage.setItem", "favorites", favoritesJson);
+
+            // Mettre à jour l'affichage après avoir supprimé le favori
+            StateHasChanged();
         }
     }
 
