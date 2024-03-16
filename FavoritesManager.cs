@@ -23,6 +23,8 @@ namespace MetropolitanMuseum
         };
         }
 
+
+
         // Propriété pour accéder à l'instance unique
         public static FavoritesManager Instance
         {
@@ -54,6 +56,17 @@ namespace MetropolitanMuseum
             }
             return new List<DepartmentFavorite>();
         }
+
+        public Dictionary<int, List<DepartmentFavorite>> GetSaveFav() 
+        { 
+            return favorites; 
+        }
+
+        public void SetsaveFav(Dictionary<int, List<DepartmentFavorite>> fav)
+        {
+            favorites = fav;
+        }
+
 
         // Ajoutez une méthode HasFavorites
         public bool HasFavorites()

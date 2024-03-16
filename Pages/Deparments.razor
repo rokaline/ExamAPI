@@ -1,42 +1,50 @@
-﻿<!--Departments.razor-->
+﻿<!-- page Departments.razor-->
 @page "/departments"
 
 @using System.Text.Json
 @using System.Net.Http
 @inject HttpClient client
 @using MetropolitanMuseum.Convertisseur <!-- Convertisseur.cs -->
-@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+@inject IJSRuntime JS
 
 
 <script src="../js/photoDept.js"></script>
 
-<!-- Affichage des données de l'API -->
+<!-- Affichage des données de l'API (départements + photos  ac possibilités de choisir le favori : 1/2/3) -->
 @if (apiResponse != null && apiResponse.Departments != null)
 {
     <h3>Départments</h3>
     <ul>
         @foreach (var department in apiResponse.Departments)
         {
-            <div>
-                
-                <li>@($"{department.DisplayName} ")</li>
-         
-                <img src="img/@($"{department.DepartmentId}.jpg")" alt="Image pour le DepartmentId {department.DepartmentId} ">
+            <li>
+                <div>
+                    @($"{department.DisplayName} ")
 
+                    <img src="img/@($"{department.DepartmentId}.jpg")" alt="Image pour le DepartmentId {department.DepartmentId} ">
 
-                <select id="etat" class="favoriteButton">
-                    <option value="1">Vu</option>
-                    <option value="2">Prévu</option>
-                    <option value="3">À prévoir</option>
-                </select> // rappel de l'évenement'
-            
-            </div>
+                    <select @onchange="@(e => AddToFavorite(e, department.DisplayName, $"{department.DepartmentId}.jpg") )" class="favoriteButton">
+                        <option value="0">Sélectionner 1 , 2  ou  3</option>
+                        <option value="1">1: Déjà vu</option>
+                        <option value="2">2: Prochaine visite</option>
+                        <option value="3">3: Visite à prévoir</option>
+                    </select>
+                </div>
+            </li>
         }
     </ul>
 }
 else
 {
     <p>Chargement des données...</p>
+}
+
+@if (FavoritesManager.Instance.HasFavorites())
+{
+    // bouton confirmation choix favoris
+    <button @onclick="ConfirmChoices">Confirmer mon choix</button>
 }
 
 @code {
@@ -68,4 +76,36 @@ else
             Console.WriteLine($"Une erreur est survenue lors de la récupération des données : {ex.Message}");
         }
     }
+
+    private async Task AddToFavorite(ChangeEventArgs e, string departmentName, string photoUrl)
+    {
+        int choice = Convert.ToInt32(e.Value);
+        DepartmentFavorite favorite = new DepartmentFavorite
+            {
+                DepartmentName = departmentName,
+                PhotoUrl = photoUrl,
+                Category = choice
+
+            };
+        FavoritesManager.Instance.AddFavorite(choice, favorite);
+
+    }
+
+
+
+
+
+
+
+    private async Task ConfirmChoices()
+    {
+        // methode qui enregistre le choix (1 ou 2 ou 3) et renvoie l'affichage  vers Favorites.razor.
+        Dictionary<int, List<DepartmentFavorite>> fav = FavoritesManager.Instance.GetSaveFav(); //récupèrtion des fav dans un objet
+        var save = JsonSerializer.Serialize(fav); //serialisation de cet objet en json
+        await JS.InvokeVoidAsync("localStorage.setItem", "myfavs", save); //ajout du json dans le local storage avec la clef myfavs => set pour mettre dans le local storage
+
+        // Rediriger vers la page "Favorites"
+        NavigationManager.NavigateTo("/favorites");
+    }
+    
 }

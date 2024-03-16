@@ -6,6 +6,11 @@ h1:focus {
     outline: none;
 }
 
+h3{
+    margin: 100px;
+    color: darkslateblue; 
+}
+
 a, .btn-link {
     color: #0071c1;
 }
@@ -103,52 +108,104 @@ code {
 }
 
 
-/* affichage photos*/
-
+/* Affichage photos */
 ul {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Crée 4 colonnes égales */
-    gap: 20px; /* Espacement entre les éléments */
-    list-style: none; /* Supprime les puces de la liste */
-    padding: 0; /* Supprime le remplissage par défaut de la liste */
-   
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    list-style: none;
+    padding: 0;
 }
 
 div {
-    text-align: center; /* Centre le contenu dans chaque div */
+    text-align: center;
     margin: 5px;
-    padding-bottom: 50px;
+    padding-bottom: 30px; /* Réduit l'espacement en bas des divs */
 }
 
 img {
-    max-width: 100%; /* Assure que l'image ne dépasse pas la largeur de son conteneur */
-    height: auto; /* Ajuste la hauteur proportionnellement à la largeur */
-    border: 1px solid #ddd; /* Ajoute une bordure autour de l'image (facultatif) */
-    border-radius: 8px; /* Ajoute des coins arrondis à l'image (facultatif) */
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ddd; /* Légèrement plus épaisse bordure */
+    border-radius: 10px; /* Coins arrondis légèrement plus prononcés */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre pour la profondeur */
 }
 
+/* Supprime la couleur rouge du texte dans li */
 li {
-    color: red; /* Change la couleur du texte en rouge */
+    color: inherit;
 }
-/* fin affichage photos*/
 
-/* bouton "ajout favori"*/
+/* Bouton "ajout favori" */
 .favoriteButton {
-    background-color: #4CAF50; /* Couleur de fond verte */
-    color: white; /* Couleur du texte blanche */
-    border: none; /* Supprime la bordure du bouton */
-    padding: 10px 15px; /* Ajoute du rembourrage au bouton */
-    text-align: center; /* Centre le texte à l'intérieur du bouton */
-    text-decoration: none; /* Supprime la décoration du texte (par défaut) */
-    display: inline-block; /* Permet à plusieurs boutons d'apparaître sur la même ligne */
-    font-size: 16px; /* Taille de la police */
-    margin: 4px 2px; /* Marge autour du bouton */
-    cursor: pointer; /* Change le curseur au survol du bouton */
-    border-radius: 8px; /* Ajoute des coins arrondis au bouton */
+    background-color: #2c3e50; /* Nouvelle couleur de fond grise */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease; /* Ajoute une transition en douceur lors du survol */
 }
 
-.favoriteButton:hover {
-        background-color: #45a049; /* Change la couleur de fond au survol */
+    .favoriteButton:hover {
+        background-color: #34495e; /* Nouvelle couleur de fond au survol */
     }
 
+/* Ajoute une légère ombre au survol des images pour la profondeur */
+div:hover img {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 /* fin ajout bouttonfavori*/
+
+
+
+/* Ajout de marges entre les éléments */
+.visteFav {
+    margin-bottom: 20px;
+}
+
+/*bouton supression*/
+.deleteButton {
+    background-color: #e74c3c; /* Couleur de fond rouge pour le bouton de suppression */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 8px; /* Ajout d'une petite marge en haut du bouton */
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+    .deleteButton:hover {
+        background-color: #c0392b; /* Nouvelle couleur de fond au survol du bouton de suppression */
+    }
+
+/* Style pour le bouton de commentaire */
+.commentButton {
+    background-color: #2c3e50; /* Couleur de fond bleue pour le bouton de commentaire (même que la sélection) */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 8px; /* Ajout d'une petite marge en haut du bouton */
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+    .commentButton:hover {
+        background-color: steelblue; /* Nouvelle couleur de fond au survol du bouton de commentaire */
+    }
