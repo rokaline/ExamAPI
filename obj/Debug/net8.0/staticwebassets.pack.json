@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Id": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\css\\bootstrap\\favorits.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\favorits.css"
+    },
+    {
       "Id": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
@@ -123,6 +127,10 @@
     {
       "Id": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\js\\delete.js",
+      "PackagePath": "staticwebassets\\js\\delete.js"
     },
     {
       "Id": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\js\\photoDept.js",

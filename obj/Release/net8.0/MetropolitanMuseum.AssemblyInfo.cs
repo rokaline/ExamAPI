@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MetropolitanMuseum")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa5675e633f56cb4fe8d27bbcd64cd7e04caadc8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6eb5a1ac6f989710c81f93f45a6bdb27a1c2675")]
 [assembly: System.Reflection.AssemblyProductAttribute("MetropolitanMuseum")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MetropolitanMuseum")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

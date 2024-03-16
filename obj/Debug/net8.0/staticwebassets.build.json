@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cgvn+VMlRtuoIJKpnLMl6EGqbEtje48//hA16nd6mQk=",
+  "Hash": "vpyelrWyW8RXqnOWHpjvc6BvVpF6p5BZsLQrhgpYfzw=",
   "Source": "MetropolitanMuseum",
   "BasePath": "/",
   "Mode": "Root",
@@ -7864,6 +7864,25 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Identity": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\css\\bootstrap\\favorits.css",
+      "SourceId": "MetropolitanMuseum",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/bootstrap/favorits.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\bootstrap\\favorits.css"
+    },
+    {
       "Identity": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\favicon.png",
       "SourceId": "MetropolitanMuseum",
       "SourceType": "Discovered",
@@ -8337,6 +8356,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\js\\delete.js",
+      "SourceId": "MetropolitanMuseum",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "js/delete.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\delete.js"
     },
     {
       "Identity": "C:\\Users\\caroline\\Desktop\\ExamAPI\\wwwroot\\js\\photoDept.js",
